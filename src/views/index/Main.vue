@@ -1,8 +1,6 @@
 <template>  
     <el-container id="Main">
-        <BreadNav></BreadNav>
-        <Input></Input>
-        <Table></Table>
+        <router-view></router-view>
     </el-container>
 </template>
 
@@ -15,9 +13,6 @@
 </style>
 
 <script>
-import BreadNav from './Main/breadcrumbNav.vue'
-import Input from './Main/InputCom.vue'
-import Table from './Main/TableCom.vue'
 export default {
     data() {
         return {
@@ -25,9 +20,6 @@ export default {
         }
     },
     components:{
-        BreadNav,
-        Input,
-        Table
     }
 }
 </script>

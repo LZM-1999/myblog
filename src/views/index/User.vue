@@ -2,17 +2,16 @@
     <el-dropdown @command="handleCommand">
         <el-container>
             <span class="el-dropdown-link" id="UserBox">
-                李忠美<i class="el-icon-arrow-down el-icon--right"></i>
+                {{this.$store.state.userinfo.user_name}}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <img src="http://www.aswait.com/zb_users/theme/Lucky/style/image/avatar.png" alt="" class="UserHeardImg">
         </el-container>
        
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="a">黄金糕</el-dropdown-item>
-          <el-dropdown-item command="b">狮子头</el-dropdown-item>
-          <el-dropdown-item command="c">螺蛳粉</el-dropdown-item>
-          <el-dropdown-item command="d" disabled>双皮奶</el-dropdown-item>
-          <el-dropdown-item command="e" divided>蚵仔煎</el-dropdown-item>
+          <el-dropdown-item command="抱歉！系统维护未开放">个人中心</el-dropdown-item>
+          <el-dropdown-item command="抱歉！系统维护未开放">设置</el-dropdown-item>
+          <el-dropdown-item command="out">退出</el-dropdown-item>
+          <el-dropdown-item command="抱歉！系统维护未开放" disabled>待开发</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
 </template>
@@ -43,7 +42,12 @@
   export default {
     methods: {
       handleCommand(command) {
-        this.$message('click on item ' + command);
+        if(command == 'out'){
+          this.$router.replace('/login')
+        }else{
+          this.$message('系统消息： ' + command);
+        }
+
       }
     }
   }

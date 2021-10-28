@@ -1,7 +1,7 @@
 <template>
 <div id="table">
   <el-table
-    :data="article"
+    :data="paginationArticleInfo.articleInfo"
     style="width: 1400px"
     height="520px"
     max-height="520px">
@@ -55,14 +55,14 @@
       width="150">
     <template slot-scope="scope">
         <el-button
-            @click="deleteRow(scope.$index, article)"
+            @click="deleteRow(scope.$index, paginationArticleInfo.articleInfo)"
             type="danger"
             size="mini">
             删除
         </el-button>
 
         <!-- 编辑按钮 -->
-        <el-button @click="updateRow(scope.$index, article)" type="primary" size="mini"> 编辑 </el-button>
+        <el-button @click="updateRow(scope.$index, paginationArticleInfo.articleInfo)" type="primary" size="mini"> 编辑 </el-button>
     </template>
     </el-table-column>
   </el-table>
@@ -77,15 +77,7 @@
   </el-dialog>
 
   <div id="pagination">
-    <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
-    </el-pagination>
+    <Pagination></Pagination>
   </div>
 </div>
 </template>
@@ -108,20 +100,26 @@
 
 <script>
 import axios from 'axios'
-import UpdateArticle from '../UpdateModle/UpdateArticle.vue'
+import UpdateArticle from './UpdateModle/UpdateArticle.vue'
+import Pagination from './pagination.vue'
+import {mapState} from 'vuex'
   export default {
+    computed:{
+      ...mapState(['paginationArticleInfo'])
+    },
     mounted() {
-        this.getarticle()
+        this.getpaginationArticleInfo()
     },
     components:{
-      UpdateArticle
+      UpdateArticle,
+      Pagination,
     },
     methods: {
       // 删除按钮方法
       deleteRow(index, rows) {
-        console.log(this.article[index].article_id);
+        console.log(rows[index].article_id);
         axios.get(
-          'http://localhost:5000/delete/article/'+this.article[index].article_id
+          '/delete/article/'+rows[index].article_id
         ).then(res=>{
           console.log(res);
           alert(res.data)
@@ -137,45 +135,23 @@ import UpdateArticle from '../UpdateModle/UpdateArticle.vue'
         // this.$store.state.articleInfo=this.article[index]
         this.dialogFormVisibles = true
       },
-      // 分页
-        handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-        console.log();
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-      },
-      getarticle(){
-        axios.get(
-            'http://127.0.0.1:5000/api/'
-        ).then(res=>{
-            this.article=res.data
-        }) 
-      },
-
-      
-
+      // 渲染分页文章
+      getpaginationArticleInfo(){
+          console.log(this.paginationArticleInfo.articleInfo+'123');
+          this.article=this.paginationArticleInfo.articleInfo     
+      }
     },
     data() {
       return {
-        article:''
-        // {
-        //   label:'',
-        //   title:'',
-        //   publish_time:'',
-        //   viewing_counts:'',
-        //   comment_count:'',
-        //   img_url:'',
-        //   author:'',
-        //   article_id:''
-        // }
-        ,
+        article:'',
         PropArticleInfo:'',
         propArticle:'hhh',
-        currentPage1: 5,
-        currentPage2: 5,
-        currentPage3: 5,
-        currentPage4: 4,
+        // 当前页数
+        currentPage: 0,
+        //总条目数
+        total:0,
+
+        pagesizes:'',
 
         // 编辑文章
         dialogTableVisible: false,

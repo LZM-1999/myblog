@@ -1,12 +1,13 @@
 <template>
     <div id="el-input">
-        <el-input placeholder="请输入内容" v-model="input5" class="input-with-select" >
-            <el-select v-model="select" slot="prepend" placeholder="请选择">
-            <el-option label="标题" value="1"></el-option>
-            <el-option label="作者" value="2"></el-option>
-            <el-option label="日期" value="3"></el-option>
+        <el-input placeholder="请输入内容" v-model="inputInfo" class="input-with-select" >
+            <el-select v-model="selectInfo" slot="prepend" placeholder="请选择">
+            <el-option label="标题" value="title"></el-option>
+            <el-option label="标签" value="label"></el-option>
+            <el-option label="作者" value="author"></el-option>
+
             </el-select>
-            <el-button slot="append" icon="el-icon-search" ></el-button>
+            <el-button slot="append" icon="el-icon-search" @click="select"></el-button>
         </el-input>
           <!-- 添加按钮 -->
           <el-button type="danger" @click="isformShow" id="ADD">添加</el-button>
@@ -49,17 +50,18 @@
 </style>
 
 <script>
-import AddArticle from '../AddModle/addArticle.vue'
-// import axios from 'axios'
+import AddArticle from './AddModle/addArticle.vue'
+import axios from 'axios'
 export default {
   data() {
     return {
-       dialogTableVisible: false,
-        dialogFormVisible: false,
-        input5:'',
-        select:'',
-        formLabelWidth: '120px',
-        switch:''
+      // 表单和弹出框的状态控制
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      // 查询条件
+      selectInfo:'label',
+      // 查询内容
+      inputInfo:'',
     }
   },
   components:{
@@ -67,11 +69,25 @@ export default {
   },
   methods: {
     isformShow(){
-      this.$store.state.dialogFormVisible = true
+      this.$store.commit('ChangeDialogFormVisible',true)
+    },
+    select(){
+      console.log(this.selectInfo);
+      axios({
+          method:'post',
+          url:'/ConditionQuery',
+          data:{
+            QueryCondition:this.selectInfo,
+            InputInfo:this.inputInfo
+          }
+      }).then(res=>{
+          this.$store.commit('getpaginationArticleInfo',res.data)
+          console.log(res.data);
+      })
     }
   },
   mounted() {
-    console.log(1);
+
   },
 }
 </script>

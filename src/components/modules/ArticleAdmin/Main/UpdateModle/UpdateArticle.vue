@@ -82,7 +82,7 @@ import axios from 'axios'
             console.log(this.form.publish_time);
             
             axios.post(
-              'http://127.0.0.1:5000/update/article/',
+              '/update/article/',
               {
                 data:this.form,
               }

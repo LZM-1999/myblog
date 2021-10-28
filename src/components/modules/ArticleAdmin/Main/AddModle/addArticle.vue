@@ -66,6 +66,7 @@
 <script>
 import axios from 'axios'
   export default {
+    // 处理显示状态
     props:['message'],
     data() {
       return {
@@ -79,33 +80,6 @@ import axios from 'axios'
         fileList: [],
         dialogImageUrl: '',
         dialogVisible: false,
-
-
-        // 表单验证
-        // rules: {
-        //   name: [
-        //     { required: true, message: '请输入活动名称', trigger: 'blur' },
-        //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        //   ],
-        //   region: [
-        //     { required: true, message: '请选择活动区域', trigger: 'change' }
-        //   ],
-        //   date1: [
-        //     { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-        //   ],
-        //   date2: [
-        //     { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-        //   ],
-        //   type: [
-        //     { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-        //   ],
-        //   resource: [
-        //     { required: true, message: '请选择活动资源', trigger: 'change' }
-        //   ],
-        //   desc: [
-        //     { required: true, message: '请填写活动形式', trigger: 'blur' }
-        //   ]
-        // }
         article_id:{
           ID:''
         },
@@ -115,56 +89,39 @@ import axios from 'axios'
       };
     },
     methods: {
-      // 文件上传
+      // 文件提交
       submitUpload(article_id) {
-        console.log(article_id);
         this.$refs.upload.submit(article_id);
       },
+      // 文件移除
       handleRemove(fileList) {
         console.log( fileList);
       },
+      // 文件上传
       handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
+        this.dialogImageUrl = file.url;//图片显示的资源地址
+        this.dialogVisible = true;//图片是否显示
       },
+      // 文件上传成功的回调
       success(){
         alert("上传成功！")
       },
 
-      handleFiles() {
-        var imgs = document.querySelectorAll(".fileElem");
-        console.log(imgs[0].files);
-        // alert('hhh')
-        // if (!files.length) {
-        //     this.fileList ='No files selected!';
-        // } else {
-        //     this.fileList='上传的图片为:'
-        //         this.imglist=files
+      // handleFiles() {
+      //   var imgs = document.querySelectorAll(".fileElem");
+      //   console.log(imgs[0].files);
+      // },
 
-        //         this.imgurl = window.URL.createObjectURL(files[0]);
-        //         // img.onload = function () {
-        //         //     window.URL.revokeObjectURL(this.src);
-        //         // }
-        //         // li.appendChild(img);
-        //         // var info = document.createElement("span");
-        //         // info.innerHTML = files[i].name + ": " + files[i].size + " bytes";
-        //         // li.appendChild(info);
-        //     }
-      },
-
+      // 提交表单
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
-            console.log(valid);
-            console.log(this.form.publish_time);
             axios.post(
-              'http://127.0.0.1:5000/insert/article/',
+              '/insert/article/',
               {data:this.form}
             ).then(res=>{
               console.log(res.data);
               this.article_id.ID=res.data
-              console.log(this.article_id.ID);
               this.submitUpload(this.article_id.ID)
               return true
             }).then(res=>{
@@ -177,12 +134,12 @@ import axios from 'axios'
           }
         });
       },
- 
+
+      // 重置表单
       resetForm(formName) {
-        console.log(formName);
         this.$refs[formName].resetFields();
       },
-
+      // 控制表单关闭
       cancel(){
         this.$store.state.dialogFormVisible=false
       }
@@ -190,14 +147,6 @@ import axios from 'axios'
     mounted() {
       console.log(this.message);
       
-    },
-    updated() {
-      // this.form=this.$store.state.articleInfo
-
-      // console.log(this.form);
-    },
-    created() {
-      
-    },
+    }
   }
 </script>
