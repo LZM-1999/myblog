@@ -8,7 +8,7 @@
             <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm2')">登录</el-button>
             <el-button @click="resetForm('ruleForm2')">重置</el-button>
         </el-form-item>
         </el-form>
@@ -39,7 +39,7 @@
     border-radius: 10px;
     width: 400px;
     height: 300px;
-    // background-color: snow;
+    background-color: snow;
 }
 </style>
 <script>
@@ -54,29 +54,50 @@ import axios from 'axios';
     };
     },
     methods: {
+      // 提交
       submitForm(formName) {
-        //   console.log(formName);
-        //   console.log(this.$refs.ruleForm2.validate());
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log(valid);
-            console.log(this.ruleForm2);
-            axios.post(
+            axios.post(   //调用登录接口
                 '/login',
                 {data:this.ruleForm2}
             ).then(res=>{
-                if(res.data=='400'){
+                if(res.data=='400'){ //登录失败
                     this.$message.error('登录失败,请重新输入！')
+                }else{                //登录成功
+                    this.$store.commit('getUserinfo', res.data[0])//提交至共享仓库
+                    window.sessionStorage.setItem('token',this.$store.state.userinfo.token)  //记录token
+                    // 判断是否有路由拦截
+                    if(this.$route.query.redirect){
+                      if(this.$route.query.redirect.indexOf('front') ==''){//是跳转去后台
+                        if(this.$store.state.userinfo.authority=='admin'){
+                        this.$message.success('博客管理平台登录成功！')
+                        this.$router.push(this.$route.query.redirect); // 跳转至前一页，this.$route.query.redirect是获取上面传递过来的值
+                        }else{
+                          this.$message.success('登录成功！欢迎回家~')
+                          this.$router.push(this.$route.query.redirect); // 跳转至前一页，this.$route.query.redirect是获取上面传递过来的值
+                        } 
+                      }else{//跳转去前台
+                        if(this.$store.state.userinfo.authority=='admin'){
+                        this.$message.success('博客管理平台登录成功！')
+                        this.$router.push('/indexApp/art_Inf_Man')//管理员调整
+                        }else{
+                          this.$message.success('登录成功！欢迎回家~')
+                          this.$router.push('/frontindex')//普通用户跳转
+                        } 
+                      }
+                    }else{
+                      if(this.$store.state.userinfo.authority=='admin'){
+                        this.$message.success('博客管理平台登录成功！')
+                        this.$router.push('/indexApp/art_Inf_Man')//管理员调整
+                      }else{
+                        this.$message.success('登录成功！欢迎回家~')
+                        this.$router.push('/frontindex')//普通用户跳转
+                      } 
+                    }
                     
-                }else{
-                    this.$message.success('登录成功')
-                    console.log(res.data);
-                    this.$store.commit('getUserinfo', res.data[0])
-                    console.log(this.$store.state.userinfo);
-                    window.sessionStorage.setItem('token',this.$store.state.userinfo.token)
-                    console.log(window.sessionStorage.getItem('token')); 
-                    this.$router.push('/indexApp/art_Inf_Man')
                     
+                                      
                 }
             })
           } else {
@@ -85,6 +106,7 @@ import axios from 'axios';
           }
         });
       },
+      // 重置
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }

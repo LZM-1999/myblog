@@ -20,6 +20,9 @@ export default {
 
 <style lang="less">
 *{
+  font-family:cursive;
+  // background-color: none !important;
+  
   margin: 0;
   padding: 0;
 }
