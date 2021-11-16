@@ -8,8 +8,7 @@
 #Main{
     display: flex;
     flex-direction: column;
-    height: 98%;
-    box-shadow: 1px -1px 10px silver;
+    height: 100%;
 }
 </style>
 

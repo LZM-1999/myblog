@@ -8,6 +8,27 @@
     </el-pagination>
 </template>
 
+<style lang="less">
+.el-pagination{
+    // margin: 10rem;
+}
+.el-pagination__total{
+    color: #fff !important;
+}
+.el-pagination__jump{
+    color: #fff !important;
+}
+.btn-next{
+    // background:transparent !important;
+    background-color: rgba(255, 255, 255, 0.178) !important;
+}
+.number{
+    background-color: rgba(255, 255, 255, 0.178) !important;
+}
+.btn-prev{
+    background-color: rgba(255, 255, 255, 0.178) !important;
+}
+</style>
 <script>
 import axios from 'axios'
 import { mapState } from 'vuex'

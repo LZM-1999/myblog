@@ -24,6 +24,7 @@
   </el-form-item>
 
   <el-form-item label="上传图片" prop="file">
+    <!-- action="http://47.243.248.226:5000/reqFlies" -->
     <el-upload
     class="upload-demo"
     ref="upload"

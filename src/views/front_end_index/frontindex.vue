@@ -32,6 +32,22 @@ export default {
 </script>
 
 <style lang="less">
+// 超小
+@media screen and (max-width: 767rem){
+
+}
+// 小
+@media screen and (min-width: 768rem){
+  
+}
+// 中
+@media screen and (min-width: 992rem){
+
+}
+// 大
+@media screen and (min-width: 1200rem){
+ 
+}
 #frontindex{
     width: 100%;
     height: 100%;

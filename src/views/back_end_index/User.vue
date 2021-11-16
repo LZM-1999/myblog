@@ -21,21 +21,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #FFF;
+      color: tomato;
   }
   .el-dropdown-link {
     cursor: pointer;
     color: #409EFF;
   }
   .el-icon-arrow-down {
-    font-size: 12px;
+    font-size: 12rem;
   }
   .UserHeardImg{
-      width: 30px;
-      height: 30px;
+      width: 45rem;
+      height: 45rem;
       border-radius: 50%;
-      box-shadow: 1px 1px 10px rgb(163, 163, 163);
+      box-shadow: 1rem 1rem 10rem rgb(163, 163, 163);
   }
+
+  // 超小
+@media screen and (max-width: 767px){
+    #UserBox{
+      color: white;
+    }
+}
 </style>
 
 <script>
@@ -52,4 +59,6 @@
       }
     }
   }
+
+  
 </script>

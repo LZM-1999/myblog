@@ -21,6 +21,8 @@
 
 <style lang="less" scoped>
 #Menu{
+  
+  font-size: 16rem;
     color: rgb(255, 255, 255);
     height: 100%;
     // background-color: rgb(100, 100, 100);
@@ -28,21 +30,39 @@
     flex-direction: column;
     flex-wrap:wrap;
     list-style: none;
-    // border-right: 1px solid rgba(245, 245, 245, 0.363);
+    // border-right: 1rem solid rgba(245, 245, 245, 0.363);
     li{
-      padding: 20px 10px;
-      margin: 10px 10px;
+      padding: 20rem 10rem;
+      margin: 10rem 10rem;
+      font-size: 16rem;
     }
     li:hover{
       // background-color:rgb(148, 148, 148);
-      box-shadow: 5px 5px 10px silver;
+      box-shadow: 5rem 5rem 10rem silver;
       cursor: pointer;
     }
 }
 .active{
-  color: bisque;
-  box-shadow: 5px 5px 10px silver;
+  box-shadow: 5rem 5rem 10rem silver;
 }
+
+@media screen and (max-width: 767px){
+  #Menu{
+    
+    width: 100%;
+    flex: 1;
+    li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      
+    }
+  }
+}
+
 </style>
 
 <script>

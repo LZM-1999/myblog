@@ -44,13 +44,13 @@
                             <li>站长推荐</li>
                         </ul>
                         <ul class="LabelInfo">
-                            <li>哈哈哈哈哈哈哈哈哈哈哈哈</li>
-                            <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
-                            <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
-                            <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
-                            <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
-                            <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
-                            <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
+                            <li><a href="#">2021年5月份自我小结</a></li>
+                            <li><a href="#">何为事业？</a></li>
+                            <li><a href="#">个人亲身感受：舌尖上的中国</a></li>
+                            <li><a href="#">PHP删除目录下的文件夹及所有文件</a></li>
+                            <li><a href="#">2021年7月份自我小结</a></li>
+                            <li><a href="#">2021年9月份自我小结</a></li>
+                            <li><a href="#">电城撒网捕鱼记</a></li>
                         </ul>
                     </div>
                 </div>
@@ -172,15 +172,17 @@ export default {
 }
 .OrderCard{
     width:100%;
-    height: 1600px;
-    background-color: brown;
+    // height: 1600px;
+    // background-color: brown;
 }
 
 .Card{
+    margin: 10px 0px;
+    border-radius: 5px;
     width: 100%;
     border: 1px solid rgb(212, 212, 212);
     overflow: hidden;
-    background-color: cadetblue;
+    // background-color: cadetblue;
 }
 
 .Title{
@@ -189,14 +191,16 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: rgb(172, 172, 172);
+    // background-color: rgb(172, 172, 172);
+    box-shadow: 1px 1px 5px silver;
+    margin-bottom: 5px;
     h3{
         padding-left: 10px;
     }
 }
 .List{
     width: 300px;
-    background-color: chocolate;
+    // background-color: chocolate;
     margin-left: 8px;
 }
 
@@ -204,30 +208,30 @@ export default {
     width: 100%;
     list-style: none;
     display: flex;
-    background-color: cornsilk;
+    background-color: rgb(228, 228, 228);
     li{
         width:100px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: cornflowerblue;
+        // background-color: cornflowerblue;
         border: 1px solid rgb(204, 204, 204);
         padding: 10px 0px;
     }
 }
 .LabelInfo{
     width: 100%;
-    background-color: brown;
+    // background-color: brown;
     display: flex;
     flex-direction: column;
     li{
         width: 100%;
         height: 30px;
-        background-color: rgb(184, 189, 189);
+        // background-color: rgb(184, 189, 189);
         border-bottom: 1px black dashed;
         padding: 10px 0px;
         display: flex;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
     }
 }

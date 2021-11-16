@@ -1,5 +1,6 @@
 <template>
     <div id="indexmain">
+        
         <Swiper></Swiper>
         <Recommend></Recommend>
     </div>
@@ -27,5 +28,7 @@ export default {
     // height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 </style>

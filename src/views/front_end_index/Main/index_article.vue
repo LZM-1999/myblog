@@ -7,9 +7,9 @@
                     <h2>{{data.title}}</h2>
                     <div id="Box2">
                         <ul class="parameter">
-                            <li>时间:</li>
-                            <li>人围观</li>
-                            <li>次吐槽</li>
+                            <li>时间:{{data.publish_time}}</li>
+                            <li>围观:{{data.viewing_counts}}</li>
+                            <li>吐槽:{{data.comment_count}}</li>
                         </ul>
                     </div>
                     <div class="text">{{data.text.substring(0,100)}}...</div>

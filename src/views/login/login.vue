@@ -1,6 +1,8 @@
 <template>
     <div id="login">
         <el-form :model="ruleForm2" status-icon  ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+          <h2>欢迎使用博客登录系统！</h2>
+          <span>用户：user（前台） admin（后台）      密码：123456 </span>
         <el-form-item label="账号" prop="number">
             <el-input type="text" v-model="ruleForm2.number" auto-complete="off"></el-input>
         </el-form-item>

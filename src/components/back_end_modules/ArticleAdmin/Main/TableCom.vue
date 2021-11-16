@@ -2,20 +2,20 @@
 <div id="table">
   <el-table
     :data="paginationArticleInfo.articleInfo"
-    :header-cell-style="{backgroundColor:'transparent',color:'#fff',fontSize:'15px',textAlign:'center'}"
-    :header-row-style="{backgroundColor:'transparent',color:'#fff',fontSize:'15px',textAlign:'center'}"
-    :cell-style="{color: '#fff',backgroundColor:'transparent',fontSize:'13px',textAlign:'center'}"
-    :row-style="{color: '#fff',backgroundColor:'transparent',fontSize:'13px',textAlign:'center'}"
-    height="520px"
+    :header-cell-style="{backgroundColor:'transparent',color:'#fff',fontSize:'15rem',textAlign:'center'}"
+    :header-row-style="{backgroundColor:'transparent',color:'#fff',fontSize:'15rem',textAlign:'center'}"
+    :cell-style="{color: '#fff',backgroundColor:'transparent',fontSize:'13rem',textAlign:'center'}"
+    :row-style="{color: '#fff',backgroundColor:'transparent',fontSize:'13rem',textAlign:'center'}"
+    height="800px"
     :fit='false'
     :highlight-current-row='true'
-    max-height="520px">
+    max-height="100%">
     <el-table-column
       
       fixed
       prop="label"
       label="标签"
-      width="150">
+      width="120">
     </el-table-column>
     <el-table-column
       
@@ -58,7 +58,7 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="300">
+      width="200rem">
     <template slot-scope="scope">
         <el-button
             @click="deleteRow(scope.$index, paginationArticleInfo.articleInfo)"
@@ -89,14 +89,20 @@
 </template>
 
 <style lang="less">
+.el-table__cell {
+  background-color: rgba(255, 255, 255, 0) !important;
+}
 #table{
-    height: 100%;
+    height: 70%;
+    // width: 1300rem;
+    border-radius: 5rem;
 }
 
 #pagination{
-    height: 10%;
+    // height: 5%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .el-table-column{
   
@@ -107,6 +113,9 @@
 }
 .el-table__body tr:hover>td {
 		background-color: #c2c2c21e !important;
+}
+@media screen and (max-width: 767px){
+  
 }
 </style>
 
@@ -170,7 +179,7 @@ import {mapState} from 'vuex'
         dialogFormVisibles: false,
         input5:'',
         select:'',
-        formLabelWidth: '120px'
+        formLabelWidth: '120rem'
       }
 
       

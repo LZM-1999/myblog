@@ -28,28 +28,38 @@
   /* overflow: scroll; */
   overflow:visible;
 }
+.el-input__inner{
+  background:transparent !important;
+}
+.el-input__suffix{
+  // background-color: rgba(255, 255, 255, 0.178) !important;
+  background:transparent !important;
+}
+.el-input__inner{
+  // color: #fff;
+}
 #el-input{
-    /* margin: 10px 0px; */
+    /* margin: 10rem 0rem; */
     height: 10%;
-    width: 600px;
+    width: 600rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     background:transparent !important
 }
 #ADD{
-    margin: 0px 10px;
+    margin: 0rem 10rem;
 }
 .dialog{
-  width: 1000px !important;
-  height: 700px;
+  width: 1000rem !important;
+  height: 700rem;
   
 }
   .input-with-select{
     background:transparent !important;
   }
   .el-select .el-input {
-    width: 100px;
+    width: 100rem;
     background:transparent !important;
   }
   .el-input{
@@ -57,6 +67,12 @@
   }
   .el-textarea__inner,.el-input__inner {
     background: transparent !important;
+}
+
+@media screen and (max-width: 767rem){
+  #el-input{
+    width: 100%;
+  }
 }
 </style>
 

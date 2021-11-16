@@ -11,7 +11,7 @@
                 <li>>@熊草原</li>
             </ul>
 
-            <div class="Copyright_Link">
+            <div class="Copyright_Link" id="a_butoom">
                 <p>Design by LiZhongMei CopyRight © 2021</p>
                 <div><a href="#">Back</a><a href="#">Me</a><a href="#">Sitemap</a></div>
             </div>
@@ -36,7 +36,7 @@ export default {
 
 <style lang="less" scoped>
 .Box0{
-    font-size: 14px;
+    font-size: 14rem;
     width: 100%;
     height: 120px;
     background-color: rgb(56, 56, 56);
@@ -45,7 +45,7 @@ export default {
     align-items: center;
 }
 .Box1{
-    width: 1200px;
+    width: 1200rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -73,12 +73,36 @@ export default {
     justify-content: space-between;
     color:#ffffff;
     a{
-        padding: 5px;
+        padding: 5rem;
         color:#8d8c8c;
         transition: color 0.2s;
     }
     a:hover{
         color:#ffffff;
     }
+}
+// 超小
+@media screen and (max-width: 767px){
+.Box0{
+    display: none;
+}
+}
+// 小
+@media screen and (min-width: 768rem){
+.Box1{
+    width: 750rem;
+}
+}
+// 中
+@media screen and (min-width: 992rem){
+.Box1{
+    width: 970rem;
+}
+}
+// 大
+@media screen and (min-width: 1200rem){
+.Box1{
+    width: 1170rem;
+}
 }
 </style>
