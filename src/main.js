@@ -13,7 +13,7 @@ Vue.prototype.$message=Message
 Vue.use(axios)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://localhost:5000/';
 // axios.defaults.baseURL = 'http://47.243.248.226:5000';
 
 

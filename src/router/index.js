@@ -14,6 +14,7 @@ const login =()=>import('../views/login/login.vue')
 const frontindex =()=>import('../views/front_end_index/frontindex.vue')
 const original =()=>import('../views/front_end_index/original.vue')
 const indexmain=()=>import('../views/front_end_index/Main/indexmain.vue')
+const album=()=>import('../views/front_end_index/album.vue')
 
 
 Vue.use(VueRouter)
@@ -66,6 +67,10 @@ const routes = [
           {
             path:'/indexmain',
             component:indexmain
+          },
+          {
+            path:'/album',
+            component:album
           }
         ]
         

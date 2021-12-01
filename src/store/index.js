@@ -16,7 +16,8 @@ export default new Vuex.Store({
     },
 
     // 用户登录成功信息
-    userinfo:''
+    userinfo:'',
+
   },
   mutations: {
     getpaginationArticleInfo(state,info){
@@ -31,9 +32,7 @@ export default new Vuex.Store({
     getUserinfo(state,info){
       state.userinfo=info
       
-    }
-
-
+    },
   },
   actions: {
   },

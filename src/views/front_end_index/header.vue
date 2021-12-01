@@ -12,9 +12,9 @@
             <ul class="Menu">
                 <router-link tag="li" to="/indexmain" active-class="router_active"><i class="iconfont">&#xe62d;</i>首页</router-link>
                 <router-link tag="li" to="/original" active-class="router_active"><i class="iconfont">&#xe612;</i>创作</router-link>
+                <router-link tag="li" to="/album" active-class="router_active"><i class="iconfont">&#xe685;</i>相册</router-link>
                 <li><i class="iconfont">&#xe60f;</i>项目</li>
                 <li><i class="iconfont">&#xe834;</i>关于</li>
-                <li><i class="iconfont">&#xe685;</i>相册</li>
                 <li @click="routerLogin()"><i class="iconfont">&#xe603;</i><User></User></li>
                 
                 
@@ -34,7 +34,10 @@ export default {
     methods:{
         routerLogin(){
             this.$router.push('/login')
-        }
+        },
+        
+
+
     },
     components:{
         User
@@ -133,7 +136,7 @@ export default {
         // background-color: tomato ;
         cursor: pointer;
         box-shadow: 5rem 5rem 10rem silver;
-        transform: translateX(1rem) translateY(1rem);
+        transform: translateX(0rem) translateY(1rem);
     }
 }
 

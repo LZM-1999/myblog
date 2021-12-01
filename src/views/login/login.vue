@@ -50,7 +50,7 @@ import axios from 'axios';
     data() {
     return {
         ruleForm2: {
-          number:'admin',
+          number:'user',
           pass: '123456',
         }
     };

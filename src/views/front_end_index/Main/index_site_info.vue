@@ -34,7 +34,7 @@
             <div class="OrderCard">
                 <div class="Card">
                     <div class="Title">
-                        <div style="width:40px;height:40px;display: flex;border-right: 1px solid rgb(212, 212, 212);justify-content: center;align-items: center;"><i class="iconfont">&#xe685;</i></div>
+                        <div style="width:40rem;height:40rem;display: flex;border-right: 1rem solid rgb(212, 212, 212);justify-content: center;align-items: center;"><i class="iconfont">&#xe685;</i></div>
                         <h3>Tab</h3>
                     </div>
                     <div class="List">
@@ -76,9 +76,10 @@ export default {
 
 <style lang="less" scoped>
 #Box0{
-    width: 318px;
+    font-size: 15rem;
+    width: 400rem;
     height: 100%;
-    margin: 15px 0px;
+    margin: 0rem 10rem;
     
     // background-color: blanchedalmond;
 }
@@ -86,11 +87,11 @@ export default {
 .businessCard{
     position: relative;
     width: 100%;
-    border: 1px solid rgb(212, 212, 212);
-    border-radius: 5px;
+    border: 1rem solid rgb(212, 212, 212);
+    border-radius: 5rem;
     overflow: hidden;
-    // height:450px;
-    // margin: 20px 0px;
+    // height:450rem;
+    // margin: 20rem 0rem;
     // background-color: brown;
 }
 
@@ -101,27 +102,27 @@ export default {
     z-index: 1;
     display: flex;
     justify-content: center;
-    // border: black 1px solid;
+    // border: black 1rem solid;
     img{
         position: relative;
-        top: 120px;
-        width: 110px;
-        height: 110px;
+        top: 120rem;
+        width: 110rem;
+        height: 110rem;
         border-radius: 50%;
-        box-shadow: 1px 1px 5px rgb(102, 102, 102);
+        box-shadow: 1rem 1rem 5rem rgb(102, 102, 102);
 
     }
 }
 .backgroundImg{
     width: 100%;
-    height: 150px;
-    padding:20px 0px;
+    height: 150rem;
+    padding:20rem 0rem;
     // background-color: cornflowerblue;
 }
 .personalInfo{
     width: 100%;
-    // height: 260px;
-    padding-top: 50px;
+    // height: 260rem;
+    padding-top: 50rem;
     // background-color:cornsilk;
 
     display: flex;
@@ -130,13 +131,13 @@ export default {
     justify-content: space-around;
 
     #signature{
-        margin: 10px 0px;
+        margin: 10rem 0rem;
     }
     #contactMe{
-        width: 200px;
-        border-radius: 5px;
+        width: 200rem;
+        border-radius: 5rem;
         color: #FFF;
-        height: 50px;
+        height: 50rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -144,7 +145,7 @@ export default {
         cursor: pointer;
     }
     .quantityInfo{
-        margin: 20px 0px;
+        margin: 20rem 0rem;
         list-style: none;
         display: flex;
         flex-direction: row;
@@ -152,7 +153,7 @@ export default {
         width: 100%;
         
         li{
-            margin: 0px 10px;
+            margin: 0rem 10rem;
             display: flex;
             flex-direction: column;
             justify-content:center;
@@ -164,44 +165,46 @@ export default {
 
 .dateCard{
     position: relative;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    border: 1px solid rgb(212, 212, 212);
-    border-radius: 5px;
+    // border: 1rem solid rgb(212, 212, 212);
+    // border-radius: 5rem;
     overflow: hidden;
-    height: 500px;
+    height: 500rem;
 }
 .OrderCard{
     width:100%;
-    // height: 1600px;
+    // height: 1600rem;
     // background-color: brown;
 }
 
 .Card{
-    margin: 10px 0px;
-    border-radius: 5px;
+    margin: 10rem 0rem;
+    border-radius: 5rem;
     width: 100%;
-    border: 1px solid rgb(212, 212, 212);
+    border: 1rem solid rgb(212, 212, 212);
     overflow: hidden;
     // background-color: cadetblue;
 }
 
 .Title{
     width: 100%;
-    height: 40px;
+    height: 40rem;
     display: flex;
     align-items: center;
     flex-direction: row;
     // background-color: rgb(172, 172, 172);
-    box-shadow: 1px 1px 5px silver;
-    margin-bottom: 5px;
+    box-shadow: 1rem 1rem 5rem silver;
+    margin-bottom: 5rem;
     h3{
-        padding-left: 10px;
+        padding-left: 10rem;
     }
 }
 .List{
-    width: 300px;
+    width: 300rem;
     // background-color: chocolate;
-    margin-left: 8px;
+    margin-left: 8rem;
 }
 
 .sortLabel{
@@ -210,13 +213,13 @@ export default {
     display: flex;
     background-color: rgb(228, 228, 228);
     li{
-        width:100px;
+        width:100rem;
         display: flex;
         justify-content: center;
         align-items: center;
         // background-color: cornflowerblue;
-        border: 1px solid rgb(204, 204, 204);
-        padding: 10px 0px;
+        border: 1rem solid rgb(204, 204, 204);
+        padding: 10rem 0rem;
     }
 }
 .LabelInfo{
@@ -226,13 +229,18 @@ export default {
     flex-direction: column;
     li{
         width: 100%;
-        height: 30px;
+        height: 30rem;
         // background-color: rgb(184, 189, 189);
-        border-bottom: 1px black dashed;
-        padding: 10px 0px;
+        border-bottom: 1rem black dashed;
+        padding: 10rem 0rem;
         display: flex;
         justify-content: left;
         align-items: center;
+    }
+}
+@media screen and (max-width: 767px){
+    #Box0{
+        display: none;
     }
 }
 </style>

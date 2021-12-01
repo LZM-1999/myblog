@@ -1,8 +1,10 @@
 <template>
-    <div id="Box0">
-        <ul class="article_list" v-for="data in article " :key="data">
+    <div id="Box0" v-if="article != ''">
+        <ul class="article_list" v-for="(data,index) in article " :key="index" ref="article_list" >
             <li class="articleInfo">
-                <img :src="data.img_url" alt="" class="img">
+                <div class="imgBox">
+                    <img :src="isloadStart[index] ? data.img_url : imgsrc " alt="" class="img">
+                </div>
                 <div id="Box1">
                     <h2>{{data.title}}</h2>
                     <div id="Box2">
@@ -12,22 +14,11 @@
                             <li>吐槽:{{data.comment_count}}</li>
                         </ul>
                     </div>
-                    <div class="text">{{data.text.substring(0,100)}}...</div>
+                    <div class="text">{{data.text.substring(0,70)}}...</div>
                 </div>
             </li>
         </ul>
-        <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[15, 30, 45, 60]"
-        :page-size="15"
-        :page-count="17"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="article.length"
-        background="true"
-        >
-        </el-pagination>
+
     </div>
 </template>
 
@@ -36,40 +27,84 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            article:'',
+            article:false,
             currentPage1: 1,
             currentPage2: 2,
             currentPage3: 3,
-            currentPage4: 4
+            currentPage4: 4,
+            isloadStart:[],
+            isSroll:false,
+            imgsrc:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201808%2F01%2F20180801230124_hyFUW.thumb.1000_0.gif&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639747912&t=29547cd80d6871577d262ec249a421fb'
         }
     },
+    
     methods: {
         getIndexArticle(){
             axios.get(
                 'api/'
             ).then(res=>{
-                
                 this.article=res.data
-                console.log(this.article);
+                return this.article
+            }).then(()=>{
+                this.$nextTick(()=>{
+                    this.article_list()
+                })
+            }).then(()=>{
+                this.addScrollListenter()
             })
         },
-
-        handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
+        // 懒加载
+        article_list(){
+                var listArr=this.$refs.article_list
+                var that=this
+                var lenght=listArr.length
+                if(that.isloadStart.length<lenght){
+                    for(let a=0;a<listArr.length;a++){
+                        that.isloadStart.push(false)
+                    }
+                }
+                for(let i=0;i<listArr.length;i++){
+                    let offsetTop=listArr[i].offsetTop
+                    let clientHeight=document.documentElement.clientHeight
+                    let scrollTop=document.documentElement.scrollTop
+                    let isshow=offsetTop-scrollTop-clientHeight
+                    if(isshow<0){
+                        let sett=setTimeout(() => {
+                            that.isloadStart.splice(i,1,true)
+                            clearTimeout(sett)
+                        }, 1000);
+                    }
+                }
+                // 都有图片了
+                if(this.isloadStart.includes(false) !=true){
+                   that.isSroll=true
+                }
+                
+                
         },
-        handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
-        }
+        addScrollListenter(){
+            let setf=this
+            document.addEventListener('scroll',setf.article_list,false)
+
+        },
     },
     mounted() {
         this.getIndexArticle()
+        // this.addScrollListenter()
+        
     },
+    updated(){
+        if(this.isSroll){
+            document.removeEventListener('scroll',this.article_list,false)
+        }
+    }
 }
 </script>
 
 <style lang="less" scoped>
 #Box0{
-    width: 820px;
+    font-size: 20rem;
+    width: 900rem;
     color: rgb(104, 104, 104);
 }
 
@@ -80,18 +115,21 @@ export default {
 }
 .articleInfo{
     width: 100%;
-    height: 175px;
-    padding: 20px 0px;
+    height: 175rem;
+    padding: 20rem 0rem;
     display: flex;
     flex-direction: row;
-    // margin: 0px 10px;
-    border-bottom: 1px solid rgb(204, 204, 204);
+    align-items: center;
+    // margin: 0rem 10rem;
+    border-bottom: 1rem solid rgb(204, 204, 204);
 }
 #Box1{
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 70%;
     justify-content: space-around;
-    margin-left: 10px;
+    margin-left: 10rem;
 }
 
 
@@ -102,20 +140,37 @@ export default {
     display: flex;
     flex-direction: row;
     li{
-        padding-right:20px;
+        padding-right:20rem;
     }
 }
+.imgBox{
+    height: 100%;
+    width:20% ;
+}
 .img{
-    width: 200px;
-    height: 175px;
+    width: 100%;
+    height: 100%;
 }
 .text{
-    width: 580px;
-    // height: 100px;
+    width: 100%;
+    // height: 100rem;
     // overflow: hidden;
 }
 
 .el-pagination{
-    margin: 20px 0px 20px 0px;
+    margin: 20rem 0rem 20rem 0rem;
+}
+
+@media screen and (max-width: 767px){
+    #Box0{
+        width: 1400rem;
+    }
+    .articleInfo{
+        height: 500rem;
+    }
+    .imgBox{
+        width: 30%;
+        // height: 80%;
+    }
 }
 </style>
